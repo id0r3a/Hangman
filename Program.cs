@@ -43,29 +43,29 @@ namespace Hangman
             {
                 Console.Clear();
                 // Visa ordet med de gissade bokstäverna
-                AnsiConsole.MarkupLine($"[bold blue]Ordet:[/] {new string(guessedWord)}");
+                AnsiConsole.MarkupLine($"[bold blue]The word:[/] {new string(guessedWord)}");
                 // Visa försök kvar
-                AnsiConsole.MarkupLine($"[bold yellow]Försök kvar:[/] {maxTries - incorrectGuesses}");
+                AnsiConsole.MarkupLine($"[bold yellow]Left attempts:[/] {maxTries - incorrectGuesses}");
                 // Visa gissade bokstäver
-                AnsiConsole.MarkupLine($"[bold cyan]Gissade bokstäver:[/] {guessedLetters}");
+                AnsiConsole.MarkupLine($"[bold cyan]Guessed letters:[/] {guessedLetters}");
                 // Visa hangman-bilden
                 DisplayHangman(incorrectGuesses);
 
                 // Läs in spelarens gissning
-                AnsiConsole.MarkupLine("[bold green]Ange en bokstav:[/]");
+                AnsiConsole.MarkupLine("[bold green]Enter a letter:[/]");
                 char guess = Char.ToLower(Console.ReadKey(true).KeyChar);
 
                 // Kolla om gissningen är en giltig bokstav
                 if (!char.IsLetter(guess))
                 {
-                    AnsiConsole.MarkupLine("[red]Ogiltig input. Vänligen ange en bokstav.[/]");
+                    AnsiConsole.MarkupLine("[red]Invalid input. Please enter a letter.[/]");
                     continue;
                 }
 
                 // Kolla om bokstaven redan är gissad
                 if (guessedLetters.ToString().Contains(guess))
                 {
-                    AnsiConsole.MarkupLine("[red]Du har redan gissat denna bokstav.[/]");
+                    AnsiConsole.MarkupLine("[red]You've already guessed this letter.[/]");
                     continue;
                 }
 
@@ -93,7 +93,7 @@ namespace Hangman
                 if (!guessedWord.Contains('_'))
                 {
                     Console.Clear();
-                    AnsiConsole.MarkupLine("[bold green]Grattis! Du har gissat ordet:[/] " + secretWord);
+                    AnsiConsole.MarkupLine("[bold green]Congratulations! You guessed the word:[/] " + secretWord);
                     break;
                 }
             }
@@ -102,10 +102,10 @@ namespace Hangman
             if (incorrectGuesses == maxTries)
             {
                 Console.Clear();
-                AnsiConsole.MarkupLine("[bold red]Tyvärr, du har förlorat. Ordet var:[/] " + secretWord);
+                AnsiConsole.MarkupLine("[bold red]Sorry, you've lost. The word was:[/] " + secretWord);
             }
 
-            AnsiConsole.MarkupLine("[bold blue]Spelet är slut. Tryck på valfri tangent för att avsluta.[/]");
+            AnsiConsole.MarkupLine("[bold blue]The game is over. Press any key to exit.[/]");
             Console.ReadKey();
         }
 
